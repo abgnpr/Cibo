@@ -4,20 +4,27 @@
   flex-direction: row;
   height: 5vh;
   border: 1px solid grey;
+  font-size: 2.5vh;
+  margin-top: 3%;
+  margin-bottom: 2%;
 }
 
 .item .name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid grey;
-  padding-top: 1vh;
   text-align: center;
   width: 60vw;
 }
 
 .item .price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid grey;
-  padding-top: 1vh;
   text-align: center;
-  width: 25vw;
+  width: 28vw;
 }
 
 .item .checkbox {
@@ -26,7 +33,7 @@
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
-  width: 15vw;
+  width: 12vw;
   /* margin-bottom: 50px; */
 }
 

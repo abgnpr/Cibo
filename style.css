@@ -9,6 +9,8 @@ Cibo
 Cocktails and Dreams
 */
 
+@import url('https://fonts.googleapis.com/css?family=Lily+Script+One&display=swap');
+
 * {
   outline: none;
   /* disable text selection for all elements*/
@@ -31,21 +33,29 @@ body {
   flex-direction: column;
   margin: 0;
   height: 100%;
+  font-family: 'Lily Script One', cursive;
+  background-color: #673AB7;
 }
 
-.top {
+.header {
   height: 12vh;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
 }
 
 .banner {
-  height: 8vh;
-  border: 1px solid grey;
+  height: 12vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  color: #FF9800;
+  font-size: 10vmin;
 }
 
 .card-nav {
-  height: 4vh;
-  border: 1px solid grey;
+  height: 0vh;
+  /* border: 1px solid grey; */
 }
 
 button.scroll {
@@ -53,7 +63,7 @@ button.scroll {
   height: 6vmin;
   width: 6vmin;
   border-radius: 50px;
-  font-size: 18px;
+  font-size: 3vmin;
   line-height: 0.9;
   font-weight: 900;
   font-style: normal;
@@ -74,11 +84,12 @@ button.scroll#right {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  align-items: center;
   justify-content: start;
   overflow-x: hidden;
   scroll-behavior: smooth;
-  height: 79vh;
-  border: 1px solid grey;
+  height: 80vh;
+  /* border: 1px solid grey; */
 }
 
 .card-container::-webkit-scrollbar {
@@ -88,22 +99,30 @@ button.scroll#right {
 .fill-card {
   min-width: 50vw;
   max-width: 50vw;
-  border: 1px solid grey;
+  height: 80vh;
+  /* border: 1px solid grey; */
 }
 
 .card {
   flex-shrink: 0;
   width: 60vw;
-  min-width: 300px;
-  max-width: 300px;
-  padding: 2%;
-  border: 1px solid grey;
+  min-width: 350px;
+  max-width: 350px;
+  height: 70vh;
+  padding: 2.5%;
   margin: 0 20px;
+  background-color: white;
+  border-radius: 3vmin;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+  /* border: 1px solid grey; */
 }
 
 .card-heading {
   height: 12%;
-  border: 1px solid grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid grey; */
 }
 
 @media screen and (max-width: 450px) {
@@ -125,6 +144,7 @@ button.scroll#right {
 .items-container {
   overflow-y: scroll;
   height: 87%;
+  padding: 2% 2% 0 2%;
   background:
     /* Shadow covers */
     linear-gradient(white 30%, rgba(255, 255, 255, 0)),
@@ -147,23 +167,24 @@ button.scroll#right {
 
   /* Opera doesn't support this in the shorthand */
   background-attachment: local, local, scroll, scroll;
-
-  border: 1px solid grey;
+  touch-action: pan-y;
+  /* border: 1px solid grey; */
 }
 
 .items-container::-webkit-scrollbar {
   display: none;
 }
 
+/* 
 @media screen and (max-width: 450px) {
   .items-container {
     touch-action: pan-y;
   }
-}
+} */
 
 .bottom {
   height: 8vh;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
 }
 
 .drawer {
@@ -171,58 +192,56 @@ button.scroll#right {
   width: 100%;
   position: fixed;
   z-index: 2;
+  left: 0;
   bottom: 0;
-  background-color: #111;
+  background-color: #212121;
   overflow-y: hidden;
   overflow-x: hidden;
   border-radius: 20px 20px 0 0;
 }
 
-.drawer #handle {
-  height: 7vh;
+.drawer h1 {
+  font-size: 7vmin;
   text-align: center;
-  font-size: 15pt;
-  font-weight: 800;
-  background-color: yellow;
+  color: #f1f1f1;
+  margin: 1vh;
 }
 
-/* The navigation menu links */
-.drawer a {
-  padding: 32px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
+.drawer #closebtn {
+  display: none;
   color: #818181;
-  display: block;
+  text-decoration: none;
+  position: absolute;
+  right: 5%;
+  top: 9%;
+  font-size: 7vmin;
+  margin-left: 50px;
   transition: 0.3s;
 }
 
-/* When you mouse over the navigation links, change their color */
-.drawer a:hover {
+.drawer #closebtn:hover {
   color: #f1f1f1;
 }
 
-/* Position and style the close button (top right corner) */
-.drawer #closebtn {
-  position: absolute;
-  top: 32px;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+.drawer #handle {
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6vmin;
+  font-weight: bold;
+  /* color: #f1f1f1; */
+  color: #343332;
+  background-color: #FF9800;
 }
 
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#main {
-  transition: margin-left .5s;
-  padding: 20px;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .drawer {
-    padding-top: 15px;
+@media screen and (min-width: 600px) {
+  .drawer h1 {
+    font-size: 5vmin;
   }
 
-  .drawer a {
-    font-size: 18px;
+  .drawer #handle {
+    font-size: 4vmin;
   }
 }
+

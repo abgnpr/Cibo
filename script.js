@@ -2,6 +2,8 @@
 // https://github.com/daneden/animate.css
 
 
+
+
 // helpers
 
 let vwInPx = (width) => width * window.innerWidth / 100;
@@ -33,6 +35,8 @@ function isHorizontallyOverflown(cont, items) {
 // CARDS NAVIGATION
 
 // declaration and initialization
+let header = document.getElementById('header');
+let banner = document.getElementById('banner');
 let cardsContainer = document.getElementById('cardCont');
 let cards = document.getElementsByClassName('card');
 let fillCards = document.getElementsByClassName('fill-card');
@@ -109,6 +113,7 @@ function getTouches(evt) {
 }
 
 function handleTouchStart(evt) {
+  if (evt.target === cardsContainer) return;
   console.log(evt.type);
   begPos = evt.touches[0].screenY;
   const firstTouch = getTouches(evt)[0];
@@ -118,6 +123,7 @@ function handleTouchStart(evt) {
 
 function handleTouchMove(evt) {
   if (!xDown || !yDown) return;
+  if (evt.target === cardsContainer) return;
 
   var xUp = evt.touches[0].clientX;
   var yUp = evt.touches[0].clientY;
@@ -162,15 +168,38 @@ function hideDrawerHandle() {
   drawer.style.height = `0`;
   setTimeout(() => drawer.style.transition = ``, 300);
 }
+
 function openDrawer() {
   drawer.style.transition = `0.5s`;
-  drawer.style.height = `${clientHeight - vhInPx(12)}px`;
-  setTimeout(() => drawer.style.transition = ``, 500);
+  handle.style.transition = `0.5s`;
+  banner.style.transition = `0.5s`;
+  drawer.style.borderRadius = `0 0 0 0`;
+  drawer.style.height = `${clientHeight - banner.clientHeight + 1/* hiding 1  */}px`;
+  handle.style.opacity = `0`;
+  banner.style.color = `#f1f1f1`;
+  banner.style.backgroundColor = `#212121`;
+  closeBtn.style.display = `block`;
+  setTimeout(() => {
+    drawer.style.transition = ``;
+    handle.style.transition = ``;
+    banner.style.transition = ``;
+  }, 500);
 }
 function closeDrawer() {
   drawer.style.transition = `0.5s`;
+  handle.style.transition = `0.5s`;
+  banner.style.transition = `0.5s`;
+  drawer.style.borderRadius = `20px 20px 0 0`;
   drawer.style.height = `7vh`;
-  setTimeout(() => drawer.style.transition = ``, 500);
+  handle.style.opacity = `1`;
+  banner.style.color = `#FF9800`;
+  banner.style.backgroundColor = `#673AB7`;
+  closeBtn.style.display = `none`;
+  setTimeout(() => {
+    drawer.style.transition = ``;
+    handle.style.transition = ``;
+    banner.style.transition = ``;
+  }, 500);
 }
 
 vegRoll.onchange = () => vegRoll.checked ? showDrawerHandle() : hideDrawerHandle();
