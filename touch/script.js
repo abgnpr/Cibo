@@ -4,7 +4,7 @@ let vminInPx = (v) => window.innerHeight < window.innerWidth ? vhInPx(v) : vwInP
 
 function open(ele) {
   ele.style.transition = `0.5s`;
-  ele.style.height = `100vh`;
+  ele.style.height = `${document.querySelector('html').clientHeight}px`;
   setTimeout(() => ele.style.transition = ``, 500);
 }
 
@@ -39,8 +39,9 @@ function handleStart(evt) {
 function handleMove(evt) {
   evt.preventDefault();
   var touch = evt.changedTouches[0];
-  let newHeight = vhInPx(100) - touch.clientY;
-  if (evt.target === handle && newHeight < vhInPx(100) && newHeight > vhInPx(5))
+  let clientHeight = document.querySelector('html').clientHeight;
+  let newHeight = clientHeight - touch.clientY;
+  if (evt.target === handle && newHeight < clientHeight && newHeight > vhInPx(10))
     div.style.height = `${newHeight}px`;
 }
 

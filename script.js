@@ -30,76 +30,59 @@ function isHorizontallyOverflown(cont, items) {
   return lastItem.right - firstItem.left > C.right - C.left;
 }
 
-let animating = false;
-function moveToCard(cardNo, cards, animationName) {
-  animating = true;
-  for (let card of cards) card.classList.add('animated', animationName);
-  cards[cardNo].scrollIntoView({ inline: "center" });
-  setTimeout(() => {
-    for (let card of cards) card.classList.remove('animated', animationName);
-    animating = false;
-  }, 0);
-};
+// CARDS NAVIGATION
 
-// cards container justification 
-
+// declaration and initialization
 let cardsContainer = document.getElementById('cardCont');
 let cards = document.getElementsByClassName('card');
 let fillCards = document.getElementsByClassName('fill-card');
 let scrollLeftBtn = document.getElementById('left');
 let scrollRightBtn = document.getElementById('right');
-let bottom = document.getElementById('displayPlate');
-
+let clientHeight, clientWidth;
 let cardInView = 0;
-const animationName = 'swing';
-// const animationName = 'jello';
 
+// orientation
 window.onload = window.onresize = () => {
-  // solve this issue
+  clientHeight = document.querySelector('html').clientHeight;
+  clientWidth = document.querySelector('html').clientWidth;
   if (isHorizontallyOverflown(cardsContainer, cards)) {
     cardsContainer.style.justifyContent = 'start';
     fillCards[0].style.display = 'inline';
     fillCards[1].style.display = 'inline';
-    moveToCard(cardInView, cards, animationName);
+    if (clientWidth > clientHeight) {
+      fillCards[0].style.maxWidth = `12vh`;
+      fillCards[0].style.minWidth = `12vh`;
+    } else {
+      fillCards[0].style.maxWidth = `50vh`;
+      fillCards[0].style.minWidth = `50vh`;
+    }
+    cards[cardInView].scrollIntoView({ inline: "center" });
   } else {
     cardsContainer.style.justifyContent = 'center';
     fillCards[0].style.display = 'none';
     fillCards[1].style.display = 'none';
   }
-  if (is_touch_device()) {
-    scrollLeftBtn.style.display = 'none';
-    scrollRightBtn.style.display = 'none';
-  } else {
-    scrollLeftBtn.style.display = 'inline';
-    scrollRightBtn.style.display = 'inline';
-  }
 };
 
-// navigation
-
 function scrollCardsLeft() {
-  if (cardInView > 0 && !animating) {
-    cardInView--;
-    moveToCard(cardInView, cards, animationName);
-  }
+  if (cardInView > 0)
+    cards[--cardInView].scrollIntoView({ inline: "center" });
 }
 
 function scrollCardsRight() {
-  if (cardInView < cards.length - 1 && !animating) {
-    cardInView++;
-    moveToCard(cardInView, cards, animationName);
-  }
+  if (cardInView < cards.length - 1)
+    cards[++cardInView].scrollIntoView({ inline: "center" });
 }
 
+// using buttons
 scrollLeftBtn.onclick = scrollCardsLeft;
 scrollRightBtn.onclick = scrollCardsRight;
+if (is_touch_device()) {
+  scrollLeftBtn.style.display = 'none';
+  scrollRightBtn.style.display = 'none';
+}
 
-openPlate = () => document.getElementById("myPlate").style.height = "100%";
-closePlate = () => document.getElementById("myPlate").style.height = "0%";
-let myPlate = document.getElementById('displayPlate');
-myPlate.onclick = openPlate;
-
-// navigation using keys
+// using arrow keys
 document.onkeydown = (event) => {
   event.preventDefault();
   console.log(event);
@@ -114,20 +97,15 @@ document.onkeydown = (event) => {
 };
 
 
-// touch navigation
-
-document.addEventListener('touchstart', handleTouchStart, false);
-document.addEventListener('touchmove', handleTouchMove, false);
-
+// using touch 
+cardsContainer.addEventListener('touchstart', handleTouchStart, false);
+cardsContainer.addEventListener('touchmove', handleTouchMove, false);
 var xDown = null;
 var yDown = null;
 
-let d = document.getElementById('myPlate');
-let begPos;
-
 function getTouches(evt) {
-  return evt.touches ||        // browser API
-    evt.originalEvent.touches; // jQuery
+  return evt.touches ||
+    evt.originalEvent.touches;
 }
 
 function handleTouchStart(evt) {
@@ -139,11 +117,7 @@ function handleTouchStart(evt) {
 };
 
 function handleTouchMove(evt) {
-  console.log(evt.type);
-
-  if (!xDown || !yDown) {
-    return;
-  }
+  if (!xDown || !yDown) return;
 
   var xUp = evt.touches[0].clientX;
   var yUp = evt.touches[0].clientY;
@@ -171,3 +145,66 @@ function handleTouchMove(evt) {
   xDown = null;
   yDown = null;
 };
+
+// Drawer
+let vegRoll = document.getElementById('veg-roll');
+let drawer = document.getElementById('drawer');
+let closeBtn = document.getElementById('closebtn');
+var handle = document.getElementById('handle');
+
+function showDrawerHandle() {
+  drawer.style.transition = `0.3s`;
+  drawer.style.height = `7vh`;
+  setTimeout(() => drawer.style.transition = ``, 300);
+}
+function hideDrawerHandle() {
+  drawer.style.transition = `0.3s`;
+  drawer.style.height = `0`;
+  setTimeout(() => drawer.style.transition = ``, 300);
+}
+function openDrawer() {
+  drawer.style.transition = `0.5s`;
+  drawer.style.height = `${clientHeight}px`;
+  setTimeout(() => drawer.style.transition = ``, 500);
+}
+function closeDrawer() {
+  drawer.style.transition = `0.5s`;
+  drawer.style.height = `7vh`;
+  setTimeout(() => drawer.style.transition = ``, 500);
+}
+
+vegRoll.onchange = () => vegRoll.checked ? showDrawerHandle() : hideDrawerHandle();
+handle.onclick = () => { if (!is_touch_device()) openDrawer(); }
+closeBtn.onclick = () => closeDrawer();
+
+handle.addEventListener("touchstart", handleStart, false);
+handle.addEventListener("touchmove", handleMove, false);
+handle.addEventListener("touchend", handleEnd, false);
+
+let initY;
+
+function handleStart(evt) {
+  evt.preventDefault();
+  console.log("touchstart.");
+  let touch = evt.changedTouches[0];
+  initY = touch.clientY;
+}
+
+function handleMove(evt) {
+  evt.preventDefault();
+  let touch = evt.changedTouches[0];
+  let newHeight = clientHeight - touch.clientY;
+  if (evt.target === handle && newHeight < clientHeight && newHeight > vhInPx(7)) {
+    drawer.style.height = `${newHeight}px`;
+  }
+}
+
+function handleEnd(evt) {
+  evt.preventDefault();
+  console.log('touchend');
+  let touch = evt.changedTouches[0];
+  if (touch.clientY - initY < vhInPx(8))
+    openDrawer();
+  else if (initY - touch.clientY < vhInPx(8))
+    closeDrawer();
+}

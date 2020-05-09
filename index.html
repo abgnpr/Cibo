@@ -24,7 +24,9 @@
     <div class="fill-card"></div>
     <div class="card">
       <div class="card-heading">Chinese</div>
-      <div class="items-container"></div>
+      <div class="items-container">
+        veg roll<input type="checkbox" name="veg-roll" id="veg-roll">
+      </div>
     </div>
     <div class="card">
       <div class="card-heading">Chinese</div>
@@ -41,13 +43,15 @@
     <div class="fill-card"></div>
     <button class="scroll" id="right">></button>
   </div>
-  <div class="bottom" id="displayPlate"></div>
-  <div id="myPlate" class="drawer">
-    <a href="javascript:void(0)" class="closebtn" onclick="closePlate()">&times;</a>
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
+  <div class="bottom" id="bottom">
+    <div id="drawer" class="drawer">
+      <div id="handle">_</div>
+      <a href="javascript:void(0)" id="closebtn">&times;</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
+    </div>
   </div>
   <script src="script.js"></script>
 </body>
