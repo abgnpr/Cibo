@@ -6,14 +6,17 @@
   border: 1px solid grey;
 }
 
-
 .item .name {
   border: 1px solid grey;
+  padding-top: 1vh;
+  text-align: center;
   width: 60vw;
 }
 
 .item .price {
   border: 1px solid grey;
+  padding-top: 1vh;
+  text-align: center;
   width: 25vw;
 }
 
