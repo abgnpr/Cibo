@@ -1,0 +1,211 @@
+/*  
+Radiant Yellow (#F9A12EFF), 
+Living Coral (#FC766AFF) and 
+Purple (#9B4A97FF) 
+*/
+
+/* 
+Cibo
+Cocktails and Dreams
+*/
+
+* {
+  outline: none;
+  /* disable text selection for all elements*/
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  height: 100%;
+}
+
+.top {
+  height: 12vh;
+  border: 1px solid grey;
+}
+
+button.scroll {
+  position: fixed;
+  height: 6vmin;
+  width: 6vmin;
+  border-radius: 50px;
+  font-size: 18px;
+  line-height: 0.9;
+  font-weight: 900;
+  font-style: normal;
+  z-index: 1 !important;
+}
+
+button.scroll#left {
+  left: 2vw;
+  top: 45vh;
+}
+
+button.scroll#right {
+  right: 2vw;
+  top: 45vh;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: start;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  height: 79vh;
+  border: 1px solid grey;
+}
+
+.fill-card {
+  min-width: 30vw;
+  max-width: 30vw;
+  border: 1px solid grey;
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
+}
+
+.card {
+  flex-shrink: 0;
+  width: 60vw;
+  min-width: 300px;
+  max-width: 300px;
+  padding: 2%;
+  border: 1px solid grey;
+  margin: 0 20px;
+}
+
+.card-heading {
+  height: 12%;
+  border: 1px solid grey;
+}
+
+.items-container {
+  overflow-y: scroll;
+  height: 87%;
+  background:
+    /* Shadow covers */
+    linear-gradient(white 30%, rgba(255, 255, 255, 0)),
+    linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%,
+
+    /* Shadows */
+    radial-gradient(50% 0, farthest-side, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
+    radial-gradient(50% 100%, farthest-side, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
+  background:
+    /* Shadow covers */
+    linear-gradient(white 30%, rgba(255, 255, 255, 0)),
+    linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%,
+
+    /* Shadows */
+    radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
+    radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+
+  /* Opera doesn't support this in the shorthand */
+  background-attachment: local, local, scroll, scroll;
+
+  border: 1px solid grey;
+}
+
+@media screen and (max-width: 450px) {
+  .card-container {
+    overflow-x: hidden;
+  }
+
+  .fill-card {
+    min-width: 9.5vw;
+    max-width: 9.5vw;
+  }
+
+  .card {
+    min-width: 83vw;
+    max-width: 83vw;
+  }
+
+  .items-container {
+    touch-action: pan-y;
+  }
+}
+
+.card-container::-webkit-scrollbar {
+  display: none;
+}
+
+.items-container::-webkit-scrollbar {
+  display: none;
+}
+
+.bottom {
+  height: 8vh;
+  border: 1px solid grey;
+}
+
+.drawer {
+  height: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 2;
+  bottom: 0;
+  background-color: #111;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  border-radius: 20px 20px 0 0;
+  transition: 0.5s;
+}
+
+/* The navigation menu links */
+.drawer a {
+  padding: 32px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.drawer a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.drawer .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .drawer {
+    padding-top: 15px;
+  }
+
+  .drawer a {
+    font-size: 18px;
+  }
+}
