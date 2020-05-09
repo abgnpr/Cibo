@@ -164,7 +164,7 @@ function hideDrawerHandle() {
 }
 function openDrawer() {
   drawer.style.transition = `0.5s`;
-  drawer.style.height = `${clientHeight}px`;
+  drawer.style.height = `${clientHeight - vhInPx(12)}px`;
   setTimeout(() => drawer.style.transition = ``, 500);
 }
 function closeDrawer() {
@@ -208,3 +208,5 @@ function handleEnd(evt) {
   else if (initY - touch.clientY < vhInPx(8))
     closeDrawer();
 }
+
+// https://flaviocopes.com/netlify-functions/

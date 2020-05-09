@@ -38,6 +38,16 @@ body {
   border: 1px solid grey;
 }
 
+.banner {
+  height: 8vh;
+  border: 1px solid grey;
+}
+
+.card-nav {
+  height: 4vh;
+  border: 1px solid grey;
+}
+
 button.scroll {
   position: fixed;
   height: 6vmin;
@@ -71,6 +81,10 @@ button.scroll#right {
   border: 1px solid grey;
 }
 
+.card-container::-webkit-scrollbar {
+  display: none;
+}
+
 .fill-card {
   min-width: 50vw;
   max-width: 50vw;
@@ -90,6 +104,22 @@ button.scroll#right {
 .card-heading {
   height: 12%;
   border: 1px solid grey;
+}
+
+@media screen and (max-width: 450px) {
+  .card-container {
+    overflow-x: hidden;
+  }
+
+  .fill-card {
+    min-width: 9.5vw;
+    max-width: 9.5vw;
+  }
+
+  .card {
+    min-width: 83vw;
+    max-width: 83vw;
+  }
 }
 
 .items-container {
@@ -121,32 +151,14 @@ button.scroll#right {
   border: 1px solid grey;
 }
 
+.items-container::-webkit-scrollbar {
+  display: none;
+}
+
 @media screen and (max-width: 450px) {
-  .card-container {
-    overflow-x: hidden;
-  }
-
-  .fill-card {
-    min-width: 9.5vw;
-    max-width: 9.5vw;
-  }
-
-  .card {
-    min-width: 83vw;
-    max-width: 83vw;
-  }
-
   .items-container {
     touch-action: pan-y;
   }
-}
-
-.card-container::-webkit-scrollbar {
-  display: none;
-}
-
-.items-container::-webkit-scrollbar {
-  display: none;
 }
 
 .bottom {

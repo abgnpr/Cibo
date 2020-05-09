@@ -11,21 +11,29 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  <link rel="stylesheet" href="checkbox.css">
   <meta name="author" content="Abhigyan Prakash">
   <meta name="description" content="Web Showcase Menu">
   <meta name="theme-color" content="#339e66ff">
 </head>
 
 <body>
-  <div class="top"></div>
+  <div class="top">
+    <div class="banner">Cibo</div>
+    <div class="card-nav"></div>
+  </div>
   <div class="card-container" id="cardCont">
     <button class="scroll" id="left"><</button>
     <div class="fill-card"></div>
     <div class="card">
       <div class="card-heading">Chinese</div>
       <div class="items-container">
-        veg roll<input type="checkbox" name="veg-roll" id="veg-roll">
+        <div class="item">
+          <div class="checkbox"><div class="check"><input id="check1" ="" type="checkbox"/><label for="check1"><div class="box"><i class="fa fa-check">&#x2714;</i></div></label></div></div>
+          <!-- avialable check styles  &#10003; &#9832; -->
+          <div class="name"></div>
+          <div class="price"></div>
+        </div>
       </div>
     </div>
     <div class="card">
