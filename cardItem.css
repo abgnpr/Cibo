@@ -1,67 +1,69 @@
 /* Custom Code Here */
-.item {
+.card-item {
   display: flex;
   flex-direction: row;
-  height: 5vh;
-  border: 1px solid grey;
+  height: 5.2vh;
+  /* border: 1px solid grey; */
   font-size: 2.5vh;
   margin-top: 3%;
   margin-bottom: 2%;
 }
 
-.item .name {
+.card-item .name {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   text-align: center;
-  width: 60vw;
+  width: 68vw;
 }
 
-.item .price {
+.card-item .price {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   text-align: center;
-  width: 28vw;
+  width: 20vw;
 }
 
-.item .checkbox {
+.card-item .checkbox {
   color: #fff;
   display: -webkit-box;
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
-  width: 12vw;
+  /* border: 1px solid grey; */
+  width: 15vw;
   /* margin-bottom: 50px; */
 }
 
-.item .checkbox+p {
+.card-item .checkbox+p {
   text-align: center;
 }
 
-.item .check input {
+.card-item .check input {
   display: none;
 }
 
-.item .check input:checked+label .box {
-  -webkit-animation: animOnTransform 1s 1 forwards;
-  animation: animOnTransform 1s 1 forwards;
+.card-item .check input:checked+label .box {
+  /* initial = 1s */
+  -webkit-animation: animOnTransform 0.5s 1 forwards;
+  animation: animOnTransform 0.5s 1 forwards;
   background: rgba(0, 0, 0, 0.5);
 }
 
-.item .check input:checked+label .box i {
+.card-item .check input:checked+label .box i {
   -webkit-transform: translate(-50%, -50%) scale(1);
   transform: translate(-50%, -50%) scale(1);
-  -webkit-transition-duration: 200ms;
-  transition-duration: 200ms;
-  -webkit-transition-delay: 400ms;
-  transition-delay: 400ms;
+  -webkit-transition-duration: 100ms;
+  transition-duration: 100ms;
+  -webkit-transition-delay: 200ms;
+  transition-delay: 200ms;
   opacity: 1;
 }
 
-.item .check label {
+.card-item .check label {
   display: -webkit-box;
   display: flex;
   -webkit-box-pack: center;
@@ -74,32 +76,32 @@
   cursor: pointer;
 }
 
-.item .check label .box {
+.card-item .check label .box {
   background: rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   position: relative;
   width: 5vh;
   height: 5vh;
-  -webkit-transition: background 300ms ease;
-  transition: background 300ms ease;
+  -webkit-transition: background 100ms ease;
+  transition: background 100ms ease;
 }
 
-.item .check label .box:hover {
+.card-item .check label .box:hover {
   background: rgba(0, 0, 0, 0.5);
 }
 
-.item .check label .box i {
+.card-item .check label .box i {
   position: absolute;
   top: 50%;
   left: 50%;
-  /* font-size: 40px; */
+  font-size: 5vmin;
   display: inline-block;
   opacity: 0;
   pointer-events: none;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  -webkit-transition-delay: 200ms;
-  transition-delay: 200ms;
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  -webkit-transition-delay: 50ms;
+  transition-delay: 50ms;
   -webkit-transform: translate(-50%, -50%) scale(4);
   transform: translate(-50%, -50%) scale(4);
 }

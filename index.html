@@ -11,53 +11,38 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="checkbox.css">
+  <link rel="stylesheet" href="cardItem.css">
   <meta name="author" content="Abhigyan Prakash">
-  <meta name="description" content="Web Showcase Menu">
-  <meta name="theme-color" content="#339e66ff">
+  <meta name="description" content="Restaurant Menu">
+  <meta name="theme-color" content="#000000ec">
 </head>
 
 <body>
+  
   <div class="header" id="header">
     <div class="banner" id="banner">Cibo</div>
-    <div class="card-nav"></div>
+    <!-- <div class="card-nav">unused</div>-->
   </div>
-  <div class="card-container" id="cardCont">
-    <button class="scroll" id="left"><</button>
-    <div class="fill-card"></div>
-    <div class="card">
-      <div class="card-heading">Chinese</div>
-      <div class="items-container">
-        <div class="item">
-          <div class="checkbox"><div class="check"><input id="veg-roll" type="checkbox"/><label for="veg-roll"><div class="box"><i class="fa fa-check">&#x2714;</i></div></label></div></div>
-          <!-- avialable check styles  &#10003; &#9832; -->
-          <div class="name">Veg Roll</div>
-          <div class="price">40/-</div>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-heading">Chinese</div>
-      <div class="items-container"></div>
-    </div>
-    <div class="card">
-      <div class="card-heading">Chinese</div>
-      <div class="items-container"></div>
-    </div>
-    <div class="card">
-      <div class="card-heading">Chinese</div>
-      <div class="items-container"></div>
-    </div>
-    <div class="fill-card"></div>
-    <button class="scroll" id="right">></button>
+
+  <div class="card-container" id="cardCont" no="0">
+    <button class="scrollBtn" id="left">&#9664;</button>
+    <button class="scrollBtn" id="right">&#9654;</button>
   </div>
+  
   <div class="bottom" id="bottom">
     <div id="drawer" class="drawer">
       <div id="handle">My order</div>
-      <a href="javascript:void(0)" id="closebtn">&times;</a>
+      <div id="closebtn">&#8964;</div>
       <h1>Selected items</h1>
+      <div class="selected-items" id="selected-items"></div>
+      <div class="order" id="order">
+        <div class="clearAll" id="clearAll">&times;</div>
+        <div class="total" id="total"></div>
+        <button>Place Order &#9832;</button>
+      </div>
     </div>
   </div>
+  
   <script src="script.js"></script>
 </body>
 

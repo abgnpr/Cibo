@@ -1,8 +1,7 @@
 // for more animations : 
 // https://github.com/daneden/animate.css
 
-
-
+// https://dev.to/isalevine/three-ways-to-retrieve-json-from-the-web-using-node-js-3c88
 
 // helpers
 
@@ -32,42 +31,182 @@ function isHorizontallyOverflown(cont, items) {
   return lastItem.right - firstItem.left > C.right - C.left;
 }
 
-// CARDS NAVIGATION
-
 // declaration and initialization
-let header = document.getElementById('header');
-let banner = document.getElementById('banner');
-let cardsContainer = document.getElementById('cardCont');
-let cards = document.getElementsByClassName('card');
-let fillCards = document.getElementsByClassName('fill-card');
-let scrollLeftBtn = document.getElementById('left');
-let scrollRightBtn = document.getElementById('right');
+const scrollBtnLeft = document.getElementById('left');
+const scrollBtnRight = document.getElementById('right');
+const fillCards = document.getElementsByClassName('fill-card');
+
+const header = document.getElementById('header');
+const banner = document.getElementById('banner');
+
+const cardsContainer = document.getElementById('cardCont');
+
+const cards = document.getElementsByClassName('card');
 let clientHeight, clientWidth;
 let cardInView = 0;
 
 // orientation
-window.onload = window.onresize = () => {
+window.onresize = orientate;
+function orientate() {
   clientHeight = document.querySelector('html').clientHeight;
   clientWidth = document.querySelector('html').clientWidth;
+  let cardsContainer = document.getElementById('cardCont');
+  let fillCard1 = document.getElementById('fillCard1');
+  let fillCard2 = document.getElementById('fillCard2');
+  if (!fillCard1 || !fillCard2) return;
   if (isHorizontallyOverflown(cardsContainer, cards)) {
     cardsContainer.style.justifyContent = 'start';
-    fillCards[0].style.display = 'inline';
-    fillCards[1].style.display = 'inline';
+    fillCard1.style.display = 'inline';
+    fillCard2.style.display = 'inline';
     if (clientWidth > clientHeight) {
-      fillCards[0].style.maxWidth = `12vh`;
-      fillCards[0].style.minWidth = `12vh`;
+      fillCard1.style.maxWidth = `12vh`;
+      fillCard1.style.minWidth = `12vh`;
     } else {
-      fillCards[0].style.maxWidth = `50vh`;
-      fillCards[0].style.minWidth = `50vh`;
+      fillCard1.style.maxWidth = `50vh`;
+      fillCard1.style.minWidth = `50vh`;
     }
     cards[cardInView].scrollIntoView({ inline: "center" });
   } else {
     cardsContainer.style.justifyContent = 'center';
-    fillCards[0].style.display = 'none';
-    fillCards[1].style.display = 'none';
+    fillCard1.style.display = 'none';
+    fillCard1.style.display = 'none';
   }
-};
+}
 
+Drawer = new class {
+  constructor() {
+    this.selectedItems = [];
+  }
+
+  render() {
+
+    if (this.selectedItems.length === 0) {
+      hideDrawerHandle();
+      return;
+    } else {
+
+      const selectedItemsCont = document.getElementById('selected-items');
+
+      // clear the list
+      while (selectedItemsCont.firstChild) {
+        selectedItemsCont.removeChild(selectedItemsCont.lastChild);
+      }
+
+      // write the list
+      let totalAmt = 0;
+      for (let item of this.selectedItems) {
+        let newSelectedItem = document.createElement('div');
+        let menuItem = menu[item.cardNo].items[item.itemNo];
+        totalAmt += menuItem.price * item.qty;
+        newSelectedItem.className = 'item';
+        newSelectedItem.innerHTML = `
+        <div class="name">${menuItem.name}</div>
+        <button class="inc">+</button>
+        <div class="qty">${item.qty}</div>
+        <button class="dec">-</button>
+        <div class="price">${menuItem.price}/-</div>
+      `;
+        selectedItemsCont.appendChild(newSelectedItem);
+      }
+
+      // update the total amount
+      document.getElementById('total').innerHTML = `Total : &#8377; ${totalAmt}/-`;
+
+      showDrawerHandle();
+    }
+  }
+
+  add(item) {
+    item.qty = 1;
+    this.selectedItems.push(item);
+    this.render();
+  }
+
+  remove(item) {
+    this.selectedItems.splice(this.selectedItems.indexOf(item), 1);
+    this.render();
+  }
+
+  clearAll() {
+    let item;
+    while (this.selectedItems.length > 0) {
+      item = this.selectedItems.pop();
+      item.checked = false;
+    }
+    this.render();
+  }
+}
+
+let menu;
+const foodDataUrl = `./fooddata.json`;
+let settings = { method: "Get" };
+fetch(foodDataUrl, settings)
+  .then(res => res.json())
+  .then((json) => {
+    menu = json;
+
+    // fill card 1
+    let fillCard1 = document.createElement('div');
+    fillCard1.setAttribute('class', 'fill-card');
+    fillCard1.setAttribute('id', 'fillCard1');
+    cardsContainer.appendChild(fillCard1);
+
+    let cardNo = 0;
+    for (let card of menu) {
+      // card
+      let newCard = document.createElement('div');
+      newCard.setAttribute("class", "card");
+      let cardId = 'card' + cardNo;
+      newCard.setAttribute("id", cardId);
+      newCard.innerHTML = `
+      <div class="card-title">${card.title}</div>
+      <div class="items-container"></div>
+      `;
+      cardsContainer.appendChild(newCard);
+
+      // card items
+      let itemNo = 0;
+      let itemsContainer = document.querySelector(`#${cardId} .items-container`);
+      for (let item of card.items) {
+        let newItem = document.createElement('div');
+        newItem.setAttribute('class', 'card-item');
+        let itemId = cardId + 'item' + itemNo;
+        newItem.innerHTML = `
+        <div class="checkbox">
+          <div class="check"><input id="${itemId}" type="checkbox" />
+            <label for="${itemId}"><div class="box"><i class="fa fa-check">&#x2714;</i></div></label>
+          </div>
+        </div>
+        <div class="name">${item.name}</div>
+        <div class="price">${item.price}/-</div>
+        `;
+        itemsContainer.appendChild(newItem);
+
+        // actually the checkbox
+        let currentItem = document.getElementById(itemId);
+        currentItem.cardNo = cardNo;
+        currentItem.itemNo = itemNo;
+        currentItem.onchange = (event) => {
+          if (event.target.checked)
+            Drawer.add(event.target);
+          else
+            Drawer.remove(event.target);
+        }
+        itemNo += 1;
+      }
+      cardNo += 1;
+    }
+
+    // fill card 2
+    let fillCard2 = document.createElement('div');
+    fillCard2.setAttribute('class', 'fill-card');
+    fillCard2.setAttribute('id', 'fillCard2');
+    cardsContainer.appendChild(fillCard2);
+
+    orientate();
+  });
+
+// CARDS NAVIGATION
 function scrollCardsLeft() {
   if (cardInView > 0)
     cards[--cardInView].scrollIntoView({ inline: "center" });
@@ -79,13 +218,14 @@ function scrollCardsRight() {
 }
 
 // using buttons
-scrollLeftBtn.onclick = scrollCardsLeft;
-scrollRightBtn.onclick = scrollCardsRight;
+scrollBtnLeft.onclick = scrollCardsLeft;
+scrollBtnRight.onclick = scrollCardsRight;
 if (is_touch_device()) {
-  scrollLeftBtn.style.display = 'none';
-  scrollRightBtn.style.display = 'none';
+  scrollBtnLeft.style.display = 'none';
+  scrollBtnRight.style.display = 'none';
 }
 
+// may use a semaphore
 // using arrow keys
 document.onkeydown = (event) => {
   event.preventDefault();
@@ -95,9 +235,11 @@ document.onkeydown = (event) => {
   else if (event.key == 'ArrowLeft')
     scrollCardsLeft();
   else if (event.key === 'ArrowUp')
-    openPlate();
+    cards[cardInView].lastElementChild.scrollBy(0, -1 * vhInPx(8));
   else if (event.key === 'ArrowDown')
-    closePlate();
+    cards[cardInView].lastElementChild.scrollBy(0, vhInPx(8));
+  else if (event.key === 'F11' && document.fullscreenEnabled)
+    document.querySelector('html').requestFullscreen();
 };
 
 
@@ -114,8 +256,7 @@ function getTouches(evt) {
 
 function handleTouchStart(evt) {
   if (evt.target === cardsContainer) return;
-  console.log(evt.type);
-  begPos = evt.touches[0].screenY;
+  // begPos = evt.touches[0].screenY;
   const firstTouch = getTouches(evt)[0];
   xDown = firstTouch.clientX;
   yDown = firstTouch.clientY;
@@ -132,14 +273,10 @@ function handleTouchMove(evt) {
   var yDiff = yDown - yUp;
 
   if (Math.abs(xDiff) > Math.abs(yDiff)) {/*most significant*/
-    if (xDiff > 0) {
-      /* left swipe */
-      scrollCardsRight();
-
-    } else {
-      /* right swipe */
-      scrollCardsLeft();
-    }
+    if (xDiff > 0)
+      scrollCardsRight();    /* left swipe */
+    else
+      scrollCardsLeft();  /* right swipe */
   } else {
     if (yDiff > 0) {
       /* up swipe */
@@ -147,22 +284,26 @@ function handleTouchMove(evt) {
       /* down swipe */
     }
   }
+
   /* reset values */
   xDown = null;
   yDown = null;
 };
 
 // Drawer
-let vegRoll = document.getElementById('veg-roll');
-let drawer = document.getElementById('drawer');
-let closeBtn = document.getElementById('closebtn');
-var handle = document.getElementById('handle');
+const drawer = document.getElementById('drawer');
+const handle = document.getElementById('handle');
+const selectedItemsCont = document.getElementById('selected-items');
+const order = document.getElementById('order');
+const closeBtn = document.getElementById('closebtn');
+// const clearAll = document.getElementById('clearAll');
 
 function showDrawerHandle() {
   drawer.style.transition = `0.3s`;
   drawer.style.height = `7vh`;
   setTimeout(() => drawer.style.transition = ``, 300);
 }
+
 function hideDrawerHandle() {
   drawer.style.transition = `0.3s`;
   drawer.style.height = `0`;
@@ -170,41 +311,61 @@ function hideDrawerHandle() {
 }
 
 function openDrawer() {
+  banner.style.transition = `0.5s`;
   drawer.style.transition = `0.5s`;
   handle.style.transition = `0.5s`;
-  banner.style.transition = `0.5s`;
+  selectedItemsCont.style.transition = `0.5s`;
+  order.style.transition = `0.05s`;
+
   drawer.style.borderRadius = `0 0 0 0`;
   drawer.style.height = `${clientHeight - banner.clientHeight + 1/* hiding 1  */}px`;
   handle.style.opacity = `0`;
-  banner.style.color = `#f1f1f1`;
+  handle.style.height = `2%`;
   banner.style.backgroundColor = `#212121`;
   closeBtn.style.display = `block`;
+  selectedItemsCont.style.opacity = `1`;
+  order.style.opacity = `1`;
+  
   setTimeout(() => {
     drawer.style.transition = ``;
     handle.style.transition = ``;
     banner.style.transition = ``;
+    selectedItemsCont.style.transition = ``;
+    order.style.transition = ``;
   }, 500);
 }
+
 function closeDrawer() {
   drawer.style.transition = `0.5s`;
   handle.style.transition = `0.5s`;
   banner.style.transition = `0.5s`;
+  selectedItemsCont.style.transition = `0.5s`;
+  order.style.transition = `0.5s`;
+
+  banner.style.backgroundColor = ``;
   drawer.style.borderRadius = `20px 20px 0 0`;
   drawer.style.height = `7vh`;
+  handle.style.height = `7vh`;
   handle.style.opacity = `1`;
-  banner.style.color = `#FF9800`;
-  banner.style.backgroundColor = `#673AB7`;
   closeBtn.style.display = `none`;
+  selectedItemsCont.style.opacity = `0`;
+  order.style.opacity = `0`;
+  
   setTimeout(() => {
     drawer.style.transition = ``;
     handle.style.transition = ``;
     banner.style.transition = ``;
+    selectedItemsCont.style.transition = ``;
+    order.style.transition = ``;
   }, 500);
 }
 
-vegRoll.onchange = () => vegRoll.checked ? showDrawerHandle() : hideDrawerHandle();
-handle.onclick = () => { if (!is_touch_device()) openDrawer(); }
+handle.onclick = () => openDrawer();
 closeBtn.onclick = () => closeDrawer();
+clearAll.onclick = () => {
+  closeDrawer();
+  Drawer.clearAll();
+}
 
 handle.addEventListener("touchstart", handleStart, false);
 handle.addEventListener("touchmove", handleMove, false);
@@ -214,7 +375,6 @@ let initY;
 
 function handleStart(evt) {
   evt.preventDefault();
-  console.log("touchstart.");
   let touch = evt.changedTouches[0];
   initY = touch.clientY;
 }
@@ -230,7 +390,6 @@ function handleMove(evt) {
 
 function handleEnd(evt) {
   evt.preventDefault();
-  console.log('touchend');
   let touch = evt.changedTouches[0];
   if (touch.clientY - initY < vhInPx(8))
     openDrawer();
@@ -239,3 +398,5 @@ function handleEnd(evt) {
 }
 
 // https://flaviocopes.com/netlify-functions/
+
+// vegRoll.onchange = () => vegRoll.checked ? showDrawerHandle() : hideDrawerHandle();

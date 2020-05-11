@@ -1,7 +1,7 @@
 {
   "name": "Cibo",
   "short_name": "Cibo",
-  "description": "A restaurant",
+  "description": "A food joint.",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -15,7 +15,7 @@
     }
   ],
   "start_url": "/?source=pwa",
-  "theme_color": "#339e66ff",
-  "background_color": "#339e66ff",
+  "theme_color": "#000000ec",
+  "background_color": "#000000ec",
   "display": "standalone"
 }

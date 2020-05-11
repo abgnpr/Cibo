@@ -1,0 +1,698 @@
+// Chinese
+Chilly Babycorn
+Golden Fry Baby Corn
+Corn Salt &amp; Pepper
+Mushroom Chilly
+Chilly Paneer
+Chilly Chicken
+Pan Fried Chicken
+Pan Fried Chicken in Olive Oil
+Chicken Lollypop
+Chicken Satay
+Hong Kong Chicken
+Tai Chi Chicken
+Golden Fried Prawn
+Prawn Chilly
+Fish Chilly
+Fish Salt and Pepper
+
+// Dals
+Yellow Dal
+Dal Jaipuri
+Dal Makhani
+Dal Makhani Jeera Tadka
+
+
+// Vegetable Dishes
+Jeera Aloo
+Gobi Masala
+Mix Veg
+Dum Aloo
+Bhindi Do Pyaza
+Bhindi Kurkuri
+Pindi Chana
+Palak Corn
+Matar Methi Malai
+Veg Kofta
+Sabzi Miloni
+Matar Mushroom
+Tawa Mushroom
+Mushroom Do Pyaza
+Soya Chaap Curry
+Navratan Korma
+Malai Kofta
+Kadai Paneer
+Paneer Tikka Masala
+Paneer Butter Masala
+Paneer Lababdar
+Paneer Do Pyaza
+Paneer Bhurji
+Tawa Paneer
+Shahi Paneer
+Matar Paneer
+Palak Paneer
+
+// Non Veg Main Course
+Egg Curry
+Chicken Curry
+Chicken Saag Wala
+Kadhai Chicken
+Chicken Rara
+Tawa Chicken
+Chicken Lababdar
+Chicken Butter Masala
+Butter Chicken
+Murgh Musallam
+Mutton Rogan josh
+Mutton Lal Maas
+Mutton Rara
+Bhuna Mutton
+Mutton Keema Curry
+Fish Curry
+Fish Tawa
+
+// Shakes
+Regular Milk Shake
+Choco Brownie Shake
+Oreo Cookie Shake
+Ferrero Rocher Shake
+Kitkat Shake
+
+// Mocktails
+Classic Mint Mojito
+Green Apple Soda
+Lemon Spicy
+Soda (Fresh Lime / Orange / Strawberry / Blue Lemon)
+Cucumber Mojito
+Electric Shock
+Classic Lemonade
+
+
+{
+  "name": "Egg Curry",
+  "price": 300
+},
+{
+  "name": "Chicken Curry",
+  "price": 300
+},
+{
+  "name": "Chicken Saag Wala",
+  "price": 300
+},
+{
+  "name": "Kadhai Chicken",
+  "price": 300
+},
+{
+  "name": "Chicken Rara",
+  "price": 300
+},
+{
+  "name": "Tawa Chicken",
+  "price": 300
+},
+{
+  "name": "Chicken Lababdar",
+  "price": 300
+},
+{
+  "name": "Chicken Butter Masala",
+  "price": 300
+},
+{
+  "name": "Butter Chicken",
+  "price": 300
+},
+{
+  "name": "Murgh Musallam",
+  "price": 300
+},
+{
+  "name": "Mutton Rogan josh",
+  "price": 300
+},
+{
+  "name": "Mutton Lal Maas",
+  "price": 300
+},
+{
+  "name": "Mutton Rara",
+  "price": 300
+},
+{
+  "name": "Bhuna Mutton",
+  "price": 300
+},
+{
+  "name": "Mutton Keema Curry",
+  "price": 300
+},
+{
+  "name": "Fish Curry",
+  "price": 300
+},
+{
+  "name": "Fish Tawa",
+  "price": 300
+},
+
+
+
+{
+  "name": "// Tandoori Starters Veg",
+  "price": 300
+},
+{
+  "name": "Veg Seekh Kabab",
+  "price": 300
+},
+{
+  "name": "Paneer Tikka",
+  "price": 300
+},
+{
+  "name": "Stuffed Tandoori Aloo",
+  "price": 300
+},
+{
+  "name": "Dahi Kabab",
+  "price": 300
+},
+{
+  "name": "Hara Bhara Kabab",
+  "price": 300
+},
+{
+  "name": "Peanut Kabab",
+  "price": 300
+},
+{
+  "name": "Tandoori Soya Chaap",
+  "price": 300
+},
+{
+  "name": "Paneer Pudina Tikka",
+  "price": 300
+},
+{
+  "name": "Tandoori Mushroom",
+  "price": 300
+},
+{
+  "name": "Hung Curd Tikki",
+  "price": 300
+},
+{
+  "name": "Dahi ke Sholay",
+  "price": 300
+},
+{
+  "name": "Tandoori Malai Soya Chaap",
+  "price": 300
+},
+{
+  "name": "Malai Paneer Tikka",
+  "price": 300
+},
+{
+  "name": "Veg Platter",
+  "price": 300
+},
+{
+  "name": "// Tandoori Starters Non -Veg",
+  "price": 300
+},
+{
+  "name": "Chicken Seekh Kabab",
+  "price": 300
+},
+{
+  "name": "Chicken Achari Tikka",
+  "price": 300
+},
+{
+  "name": "Garlic Chicken Tikka",
+  "price": 300
+},
+{
+  "name": "Murgh Kali Mirch Tikka",
+  "price": 300
+},
+{
+  "name": "Reshmi Kabab",
+  "price": 300
+},
+{
+  "name": "Murgh Rozali Kabab",
+  "price": 300
+},
+{
+  "name": "Tandoori Chicken",
+  "price": 300
+},
+{
+  "name": "Chicken Tikka",
+  "price": 300
+},
+{
+  "name": "Afghani Chicken",
+  "price": 300
+},
+{
+  "name": "Malai Chicken Tikka",
+  "price": 300
+},
+{
+  "name": "Kalmi Kabab",
+  "price": 300
+},
+{
+  "name": "Stuffed Tangdi Kabab",
+  "price": 300
+},
+{
+  "name": "Mutton Seekh Kabab",
+  "price": 300
+},
+{
+  "name": "Tandoori Fish Tikka",
+  "price": 300
+},
+{
+  "name": "Ajwaini Fish Tikka",
+  "price": 300
+},
+{
+  "name": "Amritsari Fish",
+  "price": 300
+},
+{
+  "name": "Mutton Galouti Seekh Kabab",
+  "price": 300
+},
+{
+  "name": "Chicken Galouti Seekh Kabab",
+  "price": 300
+},
+{
+  "name": "Chicken Burra",
+  "price": 300
+},
+{
+  "name": "Tandoori Non Veg Platter",
+  "price": 300
+},
+{
+  "name": "// Chinese",
+  "price": 300
+},
+{
+  "name": "Chilly Babycorn",
+  "price": 300
+},
+{
+  "name": "Golden Fry Baby Corn",
+  "price": 300
+},
+{
+  "name": "Corn Salt &amp; Pepper",
+  "price": 300
+},
+{
+  "name": "Mushroom Chilly",
+  "price": 300
+},
+{
+  "name": "Chilly Paneer",
+  "price": 300
+},
+{
+  "name": "Chilly Chicken",
+  "price": 300
+},
+{
+  "name": "Pan Fried Chicken",
+  "price": 300
+},
+{
+  "name": "Pan Fried Chicken in Olive Oil",
+  "price": 300
+},
+{
+  "name": "Chicken Lollypop",
+  "price": 300
+},
+{
+  "name": "Chicken Satay",
+  "price": 300
+},
+{
+  "name": "Hong Kong Chicken",
+  "price": 300
+},
+{
+  "name": "Tai Chi Chicken",
+  "price": 300
+},
+{
+  "name": "Golden Fried Prawn",
+  "price": 300
+},
+{
+  "name": "Prawn Chilly",
+  "price": 300
+},
+{
+  "name": "Fish Chilly",
+  "price": 300
+},
+{
+  "name": "Fish Salt and Pepper",
+  "price": 300
+},
+{
+  "name": "// Dals",
+  "price": 300
+},
+{
+  "name": "Yellow Dal",
+  "price": 300
+},
+{
+  "name": "Dal Jaipuri",
+  "price": 300
+},
+{
+  "name": "Dal Makhani",
+  "price": 300
+},
+{
+  "name": "Dal Makhani Jeera Tadka",
+  "price": 300
+},
+{
+  "name": "// Vegetable Dishes",
+  "price": 300
+},
+{
+  "name": "Jeera Aloo",
+  "price": 300
+},
+{
+  "name": "Gobi Masala",
+  "price": 300
+},
+{
+  "name": "Mix Veg",
+  "price": 300
+},
+{
+  "name": "Dum Aloo",
+  "price": 300
+},
+{
+  "name": "Bhindi Do Pyaza",
+  "price": 300
+},
+{
+  "name": "Bhindi Kurkuri",
+  "price": 300
+},
+{
+  "name": "Pindi Chana",
+  "price": 300
+},
+{
+  "name": "Palak Corn",
+  "price": 300
+},
+{
+  "name": "Matar Methi Malai",
+  "price": 300
+},
+{
+  "name": "Veg Kofta",
+  "price": 300
+},
+{
+  "name": "Sabzi Miloni",
+  "price": 300
+},
+{
+  "name": "Matar Mushroom",
+  "price": 300
+},
+{
+  "name": "Tawa Mushroom",
+  "price": 300
+},
+{
+  "name": "Mushroom Do Pyaza",
+  "price": 300
+},
+{
+  "name": "Soya Chaap Curry",
+  "price": 300
+},
+{
+  "name": "Navratan Korma",
+  "price": 300
+},
+{
+  "name": "Malai Kofta",
+  "price": 300
+},
+{
+  "name": "Kadai Paneer",
+  "price": 300
+},
+{
+  "name": "Paneer Tikka Masala",
+  "price": 300
+},
+{
+  "name": "Paneer Butter Masala",
+  "price": 300
+},
+{
+  "name": "Paneer Lababdar",
+  "price": 300
+},
+{
+  "name": "Paneer Do Pyaza",
+  "price": 300
+},
+{
+  "name": "Paneer Bhurji",
+  "price": 300
+},
+{
+  "name": "Tawa Paneer",
+  "price": 300
+},
+{
+  "name": "Shahi Paneer",
+  "price": 300
+},
+{
+  "name": "Matar Paneer",
+  "price": 300
+},
+{
+  "name": "Palak Paneer",
+  "price": 300
+},
+{
+  "name": "// Non Veg Main Course",
+  "price": 300
+},
+{
+  "name": "Egg Curry",
+  "price": 300
+},
+{
+  "name": "Chicken Curry",
+  "price": 300
+},
+{
+  "name": "Chicken Saag Wala",
+  "price": 300
+},
+{
+  "name": "Kadhai Chicken",
+  "price": 300
+},
+{
+  "name": "Chicken Rara",
+  "price": 300
+},
+{
+  "name": "Tawa Chicken",
+  "price": 300
+},
+{
+  "name": "Chicken Lababdar",
+  "price": 300
+},
+{
+  "name": "Chicken Butter Masala",
+  "price": 300
+},
+{
+  "name": "Butter Chicken",
+  "price": 300
+},
+{
+  "name": "Murgh Musallam",
+  "price": 300
+},
+{
+  "name": "Mutton Rogan josh",
+  "price": 300
+},
+{
+  "name": "Mutton Lal Maas",
+  "price": 300
+},
+{
+  "name": "Mutton Rara",
+  "price": 300
+},
+{
+  "name": "Bhuna Mutton",
+  "price": 300
+},
+{
+  "name": "Mutton Keema Curry",
+  "price": 300
+},
+{
+  "name": "Fish Curry",
+  "price": 300
+},
+{
+  "name": "Fish Tawa",
+  "price": 300
+},
+{
+  "name": "// Shakes",
+  "price": 300
+},
+{
+  "name": "Regular Milk Shake",
+  "price": 300
+},
+{
+  "name": "Choco Brownie Shake",
+  "price": 300
+},
+{
+  "name": "Oreo Cookie Shake",
+  "price": 300
+},
+{
+  "name": "Ferrero Rocher Shake",
+  "price": 300
+},
+{
+  "name": "Kitkat Shake",
+  "price": 300
+},
+{
+  "name": "// Mocktails",
+  "price": 300
+},
+{
+  "name": "Classic Mint Mojito",
+  "price": 300
+},
+{
+  "name": "Green Apple Soda",
+  "price": 300
+},
+{
+  "name": "Lemon Spicy",
+  "price": 300
+},
+{
+  "name": "Soda (Fresh Lime / Orange / Strawberry / Blue Lemon)",
+  "price": 300
+},
+{
+  "name": "Cucumber Mojito",
+  "price": 300
+},
+{
+  "name": "Electric Shock",
+  "price": 300
+},
+{
+  "name": "Classic Lemonade",
+  "price": 300
+},
+{
+  "name": "// Continental",
+  "price": 300
+},
+{
+  "name": "Penne Arrabiata Veg",
+  "price": 300
+},
+{
+  "name": "Alfredo Veg",
+  "price": 300
+},
+{
+  "name": "Pink Pasta Veg",
+  "price": 300
+},
+{
+  "name": "Penne Arrabiata Chicken",
+  "price": 300
+},
+{
+  "name": "Alfredo Chicken",
+  "price": 300
+},
+{
+  "name": "Pink Pasta Chicken",
+  "price": 300
+},
+{
+  "name": "Queen Margherita",
+  "price": 300
+},
+{
+  "name": "Veggie Supreme",
+  "price": 300
+},
+{
+  "name": "Barbeque Veg Pizza",
+  "price": 300
+},
+{
+  "name": "Barbeque Chicken Pizza",
+  "price": 300
+},
+{
+  "name": "Tandoori Paneer Pizza",
+  "price": 300
+},
+{
+  "name": "Mexican Veg Pizza",
+  "price": 300
+},
+{
+  "name": "Mexican Chicken Pizza",
+  "price": 300
+},
+{
+  "name": "Gourmet Chicken Pizza",
+  "price": 300
+},
+{
+  "name": "Tandoori Chicken Pizza",
+  "price": 300
+},
+
