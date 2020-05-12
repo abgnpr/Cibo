@@ -38,7 +38,7 @@ body {
   /* background-color: #673AB7; */
   background-color: #FFAD36;
 
-  background-image: url('images/bg.jpg');
+  background-image: url('bg.jpg');
   /* background-repeat: no-repeat; */
   background-size: cover;
   /* background-position: center; */
@@ -167,7 +167,7 @@ body {
   min-width: 350px;
   max-width: 350px;
   height: 90%;
-  padding: 0.6rem;
+  padding: 0.6rem; /* fix this */
   margin: 0 20px;
   background-color: white;
   border-radius: 12px;
