@@ -30,18 +30,20 @@ body {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   font-family: 'Lily Script One', cursive;
 
   /* background-color: #673AB7; */
   /* background-color: #FFAD36; */
   background-image: url('./images/bg.jpg');
   
-  /* background-repeat: no-repeat; */
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  /* background-position: center; */
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .header {
