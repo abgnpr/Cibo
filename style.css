@@ -37,15 +37,15 @@ body {
 
   /* background-color: #673AB7; */
   background-color: #FFAD36;
+
   background-image: url('images/bg.jpg');
-  
-  background-size: cover;
+  background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
+  background-size: cover;
   background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
 }
 
 .header {
