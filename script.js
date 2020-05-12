@@ -1,8 +1,3 @@
-// for more animations : 
-// https://github.com/daneden/animate.css
-
-// https://dev.to/isalevine/three-ways-to-retrieve-json-from-the-web-using-node-js-3c88
-
 // helpers
 
 let vwInPx = (width) => width * window.innerWidth / 100;
@@ -32,13 +27,11 @@ function isHorizontallyOverflown(cont, items) {
 }
 
 // declaration and initialization
+const header = document.getElementById('header');
+const banner = document.getElementById('banner');
 const scrollBtnLeft = document.getElementById('left');
 const scrollBtnRight = document.getElementById('right');
 const fillCards = document.getElementsByClassName('fill-card');
-
-const header = document.getElementById('header');
-const banner = document.getElementById('banner');
-
 const cardsContainer = document.getElementById('cardCont');
 
 const cards = document.getElementsByClassName('card');
@@ -84,54 +77,80 @@ Drawer = new class {
       hideDrawerHandle();
       return;
     } else {
-
       const selectedItemsCont = document.getElementById('selected-items');
 
-      // clear the list
-      while (selectedItemsCont.firstChild) {
-        selectedItemsCont.removeChild(selectedItemsCont.lastChild);
-      }
-
-      // write the list
       let totalAmt = 0;
       for (let item of this.selectedItems) {
-        let newSelectedItem = document.createElement('div');
-        let menuItem = menu[item.cardNo].items[item.itemNo];
-        totalAmt += menuItem.price * item.qty;
-        newSelectedItem.className = 'item';
-        newSelectedItem.innerHTML = `
-        <div class="name">${menuItem.name}</div>
-        <button class="inc">+</button>
-        <div class="qty">${item.qty}</div>
-        <button class="dec">-</button>
-        <div class="price">${menuItem.price}/-</div>
-      `;
-        selectedItemsCont.appendChild(newSelectedItem);
+        if (!item.selected) {
+          item.selected = document.createElement('div');
+          item.selected.className = 'item';
+          item.selected.qty = 1; // default
+          item.selected.name = menu[item.cardNo].items[item.itemNo].name;
+          item.selected.price = menu[item.cardNo].items[item.itemNo].price;
+          item.selected.innerHTML = `
+          <div class="name">${item.selected.name}</div>
+          <button class="inc">+</button>
+          <div class="qty">${item.selected.qty}</div>
+          <button class="dec">-</button>
+          <div class="price">${item.selected.price}/-</div>
+          `;
+          selectedItemsCont.appendChild(item.selected);
+
+          // increase qty button
+          item.selected.children[1].onclick = (event) => {
+            let selected = event.target.parentNode;
+            console.log(event);
+            console.log(selected);
+
+            if (selected.qty < 5) {
+              selected.qty += 1;
+              selected.children[2].innerText = `${selected.qty}`;
+              selected.children[4].innerText = `${selected.price * selected.qty}/-`;
+              Drawer.render();
+            }
+          };
+
+          // decrease qty button
+          item.selected.children[3].onclick = (event) => {
+            let selected = event.target.parentNode;
+            if (selected.qty > 1) {
+              selected.qty -= 1;
+              selected.children[2].innerText = `${selected.qty}`;
+              selected.children[4].innerText = `${selected.price * selected.qty}/-`;
+              Drawer.render();
+            }
+          };
+        }
+
+        totalAmt += item.selected.price * item.selected.qty;
+
       }
 
       // update the total amount
-      document.getElementById('total').innerHTML = `Total : &#8377; ${totalAmt}/-`;
-
+      document.getElementById('total').innerHTML = `Total&nbsp;:&nbsp;&#8377;${totalAmt}/-`;
       showDrawerHandle();
     }
   }
 
   add(item) {
-    item.qty = 1;
     this.selectedItems.push(item);
     this.render();
   }
 
   remove(item) {
-    this.selectedItems.splice(this.selectedItems.indexOf(item), 1);
+    let removedItem = this.selectedItems.splice(this.selectedItems.indexOf(item), 1)[0]; // returns an array with the removed element
+    removedItem.selected.parentNode.removeChild(removedItem.selected);
+    removedItem.selected = undefined;
     this.render();
   }
 
   clearAll() {
-    let item;
+    let removedItem;
     while (this.selectedItems.length > 0) {
-      item = this.selectedItems.pop();
-      item.checked = false;
+      removedItem = this.selectedItems.pop();
+      removedItem.selected.parentNode.removeChild(removedItem.selected);
+      removedItem.checked = false;
+      removedItem.selected = undefined;
     }
     this.render();
   }
@@ -225,11 +244,12 @@ if (is_touch_device()) {
   scrollBtnRight.style.display = 'none';
 }
 
-// may use a semaphore
+// use a semaphore
 // using arrow keys
 document.onkeydown = (event) => {
   event.preventDefault();
-  console.log(event);
+  // event.stopPropagation();
+  // console.log(event);
   if (event.key == 'ArrowRight')
     scrollCardsRight();
   else if (event.key == 'ArrowLeft')
@@ -296,12 +316,15 @@ const handle = document.getElementById('handle');
 const selectedItemsCont = document.getElementById('selected-items');
 const order = document.getElementById('order');
 const closeBtn = document.getElementById('closebtn');
-// const clearAll = document.getElementById('clearAll');
+
+let drawerOpen = false;
 
 function showDrawerHandle() {
-  drawer.style.transition = `0.3s`;
-  drawer.style.height = `7vh`;
-  setTimeout(() => drawer.style.transition = ``, 300);
+  if (!drawerOpen) {
+    drawer.style.transition = `0.3s`;
+    drawer.style.height = `7vh`;
+    setTimeout(() => drawer.style.transition = ``, 300);
+  }
 }
 
 function hideDrawerHandle() {
@@ -311,6 +334,8 @@ function hideDrawerHandle() {
 }
 
 function openDrawer() {
+  drawerOpen = true;
+
   banner.style.transition = `0.5s`;
   drawer.style.transition = `0.5s`;
   handle.style.transition = `0.5s`;
@@ -325,7 +350,7 @@ function openDrawer() {
   closeBtn.style.display = `block`;
   selectedItemsCont.style.opacity = `1`;
   order.style.opacity = `1`;
-  
+
   setTimeout(() => {
     drawer.style.transition = ``;
     handle.style.transition = ``;
@@ -336,6 +361,8 @@ function openDrawer() {
 }
 
 function closeDrawer() {
+  drawerOpen = false;
+
   drawer.style.transition = `0.5s`;
   handle.style.transition = `0.5s`;
   banner.style.transition = `0.5s`;
@@ -350,7 +377,7 @@ function closeDrawer() {
   closeBtn.style.display = `none`;
   selectedItemsCont.style.opacity = `0`;
   order.style.opacity = `0`;
-  
+
   setTimeout(() => {
     drawer.style.transition = ``;
     handle.style.transition = ``;
@@ -396,7 +423,3 @@ function handleEnd(evt) {
   else if (initY - touch.clientY < vhInPx(8))
     closeDrawer();
 }
-
-// https://flaviocopes.com/netlify-functions/
-
-// vegRoll.onchange = () => vegRoll.checked ? showDrawerHandle() : hideDrawerHandle();
