@@ -41,7 +41,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   /* background-attachment: fixed; */
-  /* background-repeat: no-repeat; */
+  background-repeat: no-repeat;
 }
 
 .header {
