@@ -4,11 +4,6 @@ Living Coral (#FC766AFF) and
 Purple (#9B4A97FF) 
 */
 
-/* 
-Cibo
-Cocktails and Dreams
-*/
-
 @import url('https://fonts.googleapis.com/css?family=Lily+Script+One&display=swap');
 
 * {
@@ -29,16 +24,18 @@ Cocktails and Dreams
 
 html,
 body {
-  display: flex;
-  flex-direction: column;
+  /* cover the whole area */
   height: 100%;
-  width: 100%;
   margin: 0;
+}
+
+body {
   font-family: 'Lily Script One', cursive;
+
   /* background-color: #673AB7; */
   /* background-color: #FFAD36; */
-
   background-image: url('./images/bg.jpg');
+  
   background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -427,5 +424,3 @@ body {
     font-size: 4vmin;
   }
 }
-
-/* https://materializecss.com/getting-started.html */
