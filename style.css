@@ -30,6 +30,9 @@ body {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+
   font-family: 'Lily Script One', cursive;
 
   /* background-color: #673AB7; */
