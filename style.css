@@ -49,7 +49,7 @@ body {
 }
 
 .header {
-  height: 12vh;
+  height: 12%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -146,7 +146,7 @@ body {
   justify-content: start;
   overflow-x: hidden;
   scroll-behavior: smooth;
-  height: 80vh;
+  height: 80%;
   /* border: 1px solid grey; */
 }
 
@@ -229,7 +229,7 @@ body {
 }
 
 .bottom {
-  height: 8vh;
+  height: 8%;
   display: flex;
   flex-direction: row;
   justify-content: center;
