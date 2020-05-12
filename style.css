@@ -41,10 +41,10 @@ body {
   background-image: url('bg.jpg');
   background-repeat: no-repeat;
   background-position: 0 0;
-  background-size: cover;
-  -webkit-background-size: cover;
+  background-size: auto;
+  /* -webkit-background-size: cover;
   -moz-background-size: cover;
-  -o-background-size: cover;
+  -o-background-size: cover; */
 }
 
 .header {
